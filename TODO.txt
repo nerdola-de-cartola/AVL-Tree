@@ -1,2 +1,3 @@
 Colocar aqui as funções a serem criadas, o responsável pela função, e o status
-Exemplo: newTree() - Matheus L - Concluído
+
+createAVL() - Matheus L - Concluído
