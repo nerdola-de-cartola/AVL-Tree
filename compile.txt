@@ -5,5 +5,5 @@ gcc ./lib/avl.c -o ./bin/avl.o -c
 clang ./lib/avl.c -o ./bin/avl.o -c
 
 Para linkar a main com a biblioteca:
-gcc ./bin/avl.o ./tests/create_test.c -o ./bin/test.exe
-clang ./bin/avl.o ./tests/create_test.c -o ./bin/test.exe
+gcc ./bin/avl.o ./create_test.c -o ./bin/test.exe
+clang ./bin/avl.o ./create_test.c -o ./bin/test.exe
