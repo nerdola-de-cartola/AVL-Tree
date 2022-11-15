@@ -1,7 +1,7 @@
-#include "../lib/avl.h"
+#include "./lib/avl.h"
 
 int main(void) {
-   Avl tree = createAvl();
+   Node *tree = createTree();
 
    return 0;
 }

@@ -1,3 +1,35 @@
 Colocar aqui as funções a serem criadas, o responsável pela função, e o status
 
-createAVL() - Matheus L - Concluído
+createTree() - Matheus L - Concluído
+
+destroyTree()
+
+createNode()
+
+sizeTree()
+
+mergeTree()
+
+insertNode()
+
+removeNode()
+
+searchTree()
+
+bfsTree()
+
+prefix()
+
+infix()
+
+postfix()
+
+printTree()
+
+rotateLL()
+
+rotateLR()
+
+rotateRL()
+
+rotateRR()
