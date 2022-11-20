@@ -1,3 +1,5 @@
+#include "avl.c"
+
 int main(){
     int opcao;
     int key;
