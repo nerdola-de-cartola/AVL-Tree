@@ -6,11 +6,11 @@ typedef struct Node {
 } Node;
 
 
-Node *createNode(int data);         /*********************************************/
+Node *createNode(int data);                     /*********************************************/
 
 //int sizeTree(Node *root);
 
-//Node insertNode(Node *root);
+Node *insertNode(Node *root, Node *newNode);    /*********************************************/
 
 //int removeNode(Node *root);
 
@@ -18,22 +18,20 @@ Node *createNode(int data);         /*******************************************
 
 //int bfsTree(Node *root)
 
-int height(Node *root);             /*********************************************/
+int height(Node *root);                         /*********************************************/
 
-int getBalance(Node *root);         /*********************************************/
+int max(int x, int y);                          /*********************************************/
 
-void prefix(Node *root);            /*********************************************/
+int getBalance(Node *root);                     /*********************************************/
 
-void infix(Node *root);             /*********************************************/
+void prefix(Node *root);                        /*********************************************/
 
-void postfix(Node *root);           /*********************************************/
+void infix(Node *root);                         /*********************************************/
 
-//void printTree(Node *root)
+void postfix(Node *root);                       /*********************************************/
 
-//void rotateLL();
+void printTree(Node *root, int repeater);       /*********************************************/
 
-//void rotateLR();
+Node *rotateL(Node *root);                      /*********************************************/
 
-//void rotateRL();
-
-//void rotateRR();
+Node *rotateR(Node *root);                      /*********************************************/
