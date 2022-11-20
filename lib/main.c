@@ -1,15 +1,14 @@
-#include "avl.c"
-
 int main(){
     int opcao;
     int key;
     int percurso;
 
+    struct Node *temp = NULL;
     struct Node *root = NULL;
 
 
 
-    while(opcao != 0){
+    do{
         printf("\n\n------------------------------------- Menu -------------------------------------\n");
         printf("01 - inserir No.\n");
         printf("02 - excluir No.\n");
@@ -26,7 +25,8 @@ int main(){
                 printf("digite a chave a ser inserida: ");
                 scanf("%d", &key);
 
-                //insertNode(root, key);
+                temp = createNode(key);
+                root = insertNode(root, temp);
 
                 break;
             case 2:
@@ -37,7 +37,8 @@ int main(){
 
                 break;
             case 3:
-
+                printf("\n");
+                printTree(root, 0);
 
                 break;
             case 4:
@@ -62,6 +63,6 @@ int main(){
                     }
                 break;
         }
-    }
+    }while(opcao != 0);
 
 }
