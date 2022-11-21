@@ -1,6 +1,8 @@
-#include <stdio.h>
-#include<stdlib.h>
 #include "avl.h"
+
+Node * createTree() {
+    return NULL;
+}
 
 Node *createNode(int data){
     Node *node = (Node *) malloc(sizeof(Node));
@@ -13,11 +15,27 @@ Node *createNode(int data){
     return node;
 }
 
+int sizeTree(Node *root) {
+    int size = 0;
+
+    if(root == NULL) return 0;
+
+    if(root->left != NULL) size += sizeTree(root->left);
+    if(root->right != NULL) size += sizeTree(root->right);
+
+    return size + 1;
+}
+
+Node *insert(Node *root, int newData) {
+    return insertNode(root, createNode(newData));
+}
+
 Node *insertNode(Node *root, Node *newNode){
     int rootBalance;
 
     if(root == NULL){
-        return (root = newNode);
+        root = newNode;
+        return root;
     }
     if(newNode->data < root->data){
         root->left = insertNode(root->left, newNode);
@@ -59,6 +77,22 @@ int height(Node *root){
     return 0;
 }
 
+Node *searchTree(Node *root, int data) {
+    if(root == NULL) return NULL;
+
+    if(root->data == data) return root;
+
+    Node *child;
+    
+    child = searchTree(root->left, data);
+    if(child != NULL) return child;
+
+    
+    child = searchTree(root->right, data);
+    if(child != NULL) return child;
+
+    return NULL;
+}
 
 int max(int x, int y){
     return (x > y) ? x : y;
@@ -105,7 +139,6 @@ void printTree(Node *root, int repeater){
         }
 
         printf(">");
-        //printf(  "{ %d }\n", root->data);
         printf(  "{ DATA : %d, Height : %d, Balance Factor : %d }\n", root->data, root->height, getBalance(root) );
 
         printTree(root->right, repeater + 2);

@@ -1,35 +1,31 @@
 Colocar aqui as funções a serem criadas, o responsável pela função, e o status
 
-createTree() - Matheus L - Concluído
+createTree() - Matheus Lucas - Concluído
 
 destroyTree()
 
-createNode()
+createNode() - Matheus Leonel - Concluído
 
-sizeTree()
+sizeTree() - Matheus Lucas - Concluído
 
 mergeTree()
 
-insertNode()
+insertNode() - Matheus Leonel - Concluído
 
 removeNode()
 
-searchTree()
+searchTree() - Matheus Lucas - Concluído
 
 bfsTree()
 
-prefix()
+prefix() - Matheus Leonel - Concluído
 
-infix()
+infix() - Matheus Leonel - Concluído
 
-postfix()
+postfix() - Matheus Leonel - Concluído
 
-printTree()
+printTree() - Matheus Leonel - Concluído
 
-rotateLL()
+rotateL() - Matheus Leonel - Concluído
 
-rotateLR()
-
-rotateRL()
-
-rotateRR()
+rotateR() - Matheus Leonel - Concluído
