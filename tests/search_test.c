@@ -1,16 +1,17 @@
-#include "lib/avl.h"
+#include <stdbool.h>
+#include "../lib/avl.h"
 
 int main(void) {
    Node *tree = createTree();
    bool exist;
 
-   tree = insert(tree, 0);
-   tree = insert(tree, 1);
-   tree = insert(tree, 123);
-   tree = insert(tree, 13);
-   tree = insert(tree, -3);
-   tree = insert(tree, -24);
-   tree = insert(tree, -9);
+   insert(&tree, 0);
+   insert(&tree, 1);
+   insert(&tree, 123);
+   insert(&tree, 13);
+   insert(&tree, -3);
+   insert(&tree, -24);
+   insert(&tree, -9);
 
    exist = searchTree(tree, 0);
    if(exist) printf("True\n");

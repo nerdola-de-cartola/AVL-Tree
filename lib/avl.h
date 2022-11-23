@@ -15,7 +15,7 @@ typedef struct Node {
  * 
  * @return Ponteiro para a raiz
  */
-Node * createTree();
+Node *createTree();
 
 /**
  * @brief Cria o nó de uma árvore
@@ -23,7 +23,7 @@ Node * createTree();
  * @param data, dados a serem inseridos 
  * @return Retorna a nova raiz
  */
-Node *createNode(int data);                     /*********************************************/
+Node *createNode(int data);
 
 /**
  * @brief Quantidade de nós em uma árvore, tempo O(log(N)
@@ -40,7 +40,7 @@ int sizeTree(Node *root);
  * @param newData novo dado
  * @return Retorna a raiz da nova árvore
  */
-Node *insert(Node *root, int newData);
+void insert(Node **root, int newData);
 
 /**
  * @brief Insere um novo dado em uma árvore
@@ -49,9 +49,7 @@ Node *insert(Node *root, int newData);
  * @param newNode novo nó
  * @return Retorna a raiz da nova árvore
  */
-Node *insertNode(Node *root, Node *newNode);    /*********************************************/
-
-//int removeNode(Node *root);
+Node *insertNode(Node *root, Node *newNode);
 
 /**
  * @brief Verifica se um valor existe ou não
@@ -64,15 +62,13 @@ Node *insertNode(Node *root, Node *newNode);    /*******************************
  */
 Node *searchTree(Node *root, int data);
 
-//int bfsTree(Node *root)
-
 /**
  * @brief Retorna a altura de um nó na árvore
  * 
  * @param root Ponteiro para o nó desejado
  * @return Altura do nó
  */
-int height(Node *root);                         /*********************************************/
+int height(Node *root);
 
 /**
  * @brief
@@ -81,7 +77,7 @@ int height(Node *root);                         /*******************************
  * @param y 
  * @return Retorna o máximo entre x e y
  */
-int max(int x, int y);                          /*********************************************/
+int max(int x, int y);
 
 /**
  * @brief Encontra o fator de balanceamento de um nó
@@ -89,14 +85,14 @@ int max(int x, int y);                          /*******************************
  * @param root Ponteiro para o nó
  * @return Retorna o fator de balanceamento
  */
-int getBalance(Node *root);                     /*********************************************/
+int getBalance(Node *root);
 
 /**
  * @brief Imprime a árvore em prefix
  * 
  * @param root Ponteiro para a raiz da árvore
  */
-void prefix(Node *root);                        /*********************************************/
+void prefix(Node *root);
 
 
 /**
@@ -104,15 +100,14 @@ void prefix(Node *root);                        /*******************************
  * 
  * @param root Ponteiro para a raiz da árvore
  */
-void infix(Node *root);                         /*********************************************/
-
+void infix(Node *root);
 
 /**
  * @brief Imprime a árvore em postfix
  * 
  * @param root Ponteiro para a raiz da árvore
  */
-void postfix(Node *root);                       /*********************************************/
+void postfix(Node *root);
 
 /**
  * @brief Imprime os nós da árvore com 
@@ -121,7 +116,7 @@ void postfix(Node *root);                       /*******************************
  * @param root Ponteiro para a raiz da árvore
  * @param repeater Controla a quantidade de traços a serem impressos
  */
-void printTree(Node *root, int repeater);       /*********************************************/
+void printTree(Node *root, int repeater);
 
 /**
  * @brief Executa left rotation em um nó
@@ -130,7 +125,7 @@ void printTree(Node *root, int repeater);       /*******************************
  * @param root Nó desejado 
  * @return Ponteiro para a nova raiz
  */
-Node *rotateL(Node *root);                      /*********************************************/
+Node *rotateL(Node *root);
 
 /**
  * @brief Executa left rotation em um nó
@@ -139,4 +134,81 @@ Node *rotateL(Node *root);                      /*******************************
  * @param root Nó desejado 
  * @return Ponteiro para a nova raiz
  */
-Node *rotateR(Node *root);                      /*********************************************/
+Node *rotateR(Node *root);
+
+/**
+ * @brief Cria uma nova árvore que é a 
+ * união das outras duas
+ * 
+ * @param root1 Ponteiro para a raiz da árvore
+ * @param root2 Ponteiro para a raiz da árvore
+ * @return Ponteiro para a raiz da  nova árvore
+ */
+Node *merge(Node *root1, Node *root2);
+
+/**
+ * @brief Remove um nó da árvore
+ * 
+ * @param root Ponteiro para a raiz da árvore
+ * @param key Valor a ser removido
+ * @return Retorna a nova raiz da árvore
+ */
+Node *removeNode(Node * root, int key);
+
+/**
+ * @brief Libera completamente a memoria de uma árvore
+ * 
+ * @param node Ponteiro para a raiz da árvore
+ * @return Ponteiro para NULL
+ */
+Node *destroyTree(Node * node);
+
+/**
+ * @brief Retorna o filho mínimo de uma árvore
+ * 
+ * @param node Ponteiro para o nó desejado
+ * @return Retorna um ponteiro para o ní mínimo
+ */
+Node *min(Node * node);
+
+/**
+ * @brief Deleta um nó de uma árvore
+ * 
+ * @param root Ponteiro para a raiz da árvore
+ * @param key Valor a ser removido
+ */
+void delete(Node **root, int key);
+
+/**
+ * @brief Apaga a árvore completamente
+ * 
+ * @param root Ponteiro para a raiz da árvore
+ */
+void destroy(Node **root);
+
+
+/**
+ * @brief Imprime os nós da árvore da 
+ * esquerda para a direita e de cima
+ * para baixo
+ * 
+ * @param root Ponteiro para a raiz da árvore
+ */
+void BFS(Node *root);
+
+/**
+ * @brief Encontra a altura absoluta de um nó na árvore
+ * 
+ * @param root Ponteiro para a raiz da árvore
+ * @return Retorna a altura absoluta
+ */
+int absoluteHeight(Node *root);
+
+
+/**
+ * @brief Imprime um nível da árvore da esquerda para a direita
+ * 
+ * @param root Ponteiro para a raiz da árvore
+ * @param level Nível desejado 
+ */
+void processLevel(Node *root, int level);

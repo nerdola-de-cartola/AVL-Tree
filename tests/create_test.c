@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "./lib/avl.h"
+#include "../lib/avl.h"
 
 int main(void) {
    Node *tree = createTree();

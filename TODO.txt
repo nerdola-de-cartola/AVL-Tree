@@ -2,21 +2,21 @@ Colocar aqui as funções a serem criadas, o responsável pela função, e o sta
 
 createTree() - Matheus Lucas - Concluído
 
-destroyTree()
+destroyTree() - Bruna Brito - Concluído
 
 createNode() - Matheus Leonel - Concluído
 
 sizeTree() - Matheus Lucas - Concluído
 
-mergeTree()
+mergeTree() - Bruna Brito - Concluído
 
 insertNode() - Matheus Leonel - Concluído
 
-removeNode()
+removeNode() - Bruna Brito - Concluído
 
 searchTree() - Matheus Lucas - Concluído
 
-bfsTree()
+bfsTree() - Bruna Brito - Concluído
 
 prefix() - Matheus Leonel - Concluído
 
@@ -29,3 +29,7 @@ printTree() - Matheus Leonel - Concluído
 rotateL() - Matheus Leonel - Concluído
 
 rotateR() - Matheus Leonel - Concluído
+
+absoluteHeight() - Matheus Lucas - Concluído
+
+Criar menu iterativo
