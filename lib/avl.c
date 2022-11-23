@@ -26,8 +26,8 @@ int sizeTree(Node *root) {
     return size + 1;
 }
 
-Node *insert(Node *root, int newData) {
-    return insertNode(root, createNode(newData));
+void insert(Node **root, int newData) {
+    *root = insertNode(*root, createNode(newData));
 }
 
 Node *insertNode(Node *root, Node *newNode){
@@ -132,7 +132,7 @@ void postfix(Node *root){
 
 void printTree(Node *root, int repeater){
     if(root != NULL){
-        printTree(root->left, repeater + 2);
+        if(root->left != NULL) printTree(root->left, repeater + 2);
 
         for(int i = 0; i < repeater; ++i) {
             printf("-");
@@ -141,9 +141,17 @@ void printTree(Node *root, int repeater){
         printf(">");
         printf(  "{ DATA : %d, Height : %d, Balance Factor : %d }\n", root->data, root->height, getBalance(root) );
 
-        printTree(root->right, repeater + 2);
+        if(root->right != NULL) printTree(root->right, repeater + 2);
     }
+    else printf("ARVORE VAZIA\n");
 }
+
+Node *min(Node * node) {
+    Node * atual = node;
+    while(atual->left != NULL) atual = atual->left;
+    return atual;
+}
+
 
 Node *rotateL(Node *root){
     Node *newRoot = root->right;
@@ -169,4 +177,162 @@ Node *rotateR(Node *root){
     newRoot->height = 1 + max(height(newRoot->left), height(newRoot->right));
 
     return newRoot;
+}
+
+Node *removeNode(Node * root, int key) {
+    if(root == NULL) return root;
+
+
+    if(key < root->data) 
+        root->left = removeNode(root->left, key);
+    
+    else if(key > root->data)
+        root->right = removeNode(root->right, key);
+    
+    else {
+        if( (root->left == NULL) || (root->right == NULL)) {
+            Node *temp = root->left != NULL ? root->left : root->right;
+
+            if(temp == NULL) {
+                temp = root;
+                root = NULL;
+            }
+            else *root = *temp;
+
+            free(temp);
+        }
+
+        else {
+            Node * temp = min(root->right);
+
+            root->data = temp->data;
+
+            root->right = removeNode(root->right, temp->data);
+        }
+    }
+
+    if(root == NULL) return root;
+
+    root->height = 1 + max(height(root->left), height(root->right));
+
+    int balance = getBalance(root);
+
+    if(balance > 1 && getBalance(root->left) >= 0)
+        return rotateR(root);
+    
+    if(balance > 1 && getBalance(root->left) < 0) {
+        root->left = rotateL(root->left);
+        return rotateR(root);
+    }
+
+    if(balance < -1 && getBalance(root->right) <= 0)
+        return rotateL(root);
+
+    if(balance < -1 && getBalance(root->right) > 0) {
+        root->right = rotateR(root->right);
+        return rotateL(root);
+    }
+
+    return root;
+}
+
+Node *destroyTree(Node * node) {
+    if(node->left != NULL)  {
+        node->left = destroyTree(node->left);
+    }
+
+    if(node->right != NULL)  {
+        node->right = destroyTree(node->right);
+    }
+
+    free(node);
+    return NULL;
+}
+
+void destroy(Node **root) {
+    *root = destroyTree(*root);
+}
+
+void delete(Node **root, int key) {
+    *root = removeNode(*root, key);
+}
+
+void treeToArr(Node *root, int *arr, int *pos) {
+    if(root == NULL) return;
+
+    arr[*pos] = root->data;
+    (*pos)++;
+
+    treeToArr(root->left, arr, pos);
+    treeToArr(root->right, arr, pos);
+}
+
+Node *merge(Node *root1, Node *root2) {
+    int size_t1 = sizeTree(root1);
+    int size_t2 = sizeTree(root2);
+
+    int *arr1 = (int *) malloc(size_t1 * sizeof(int));
+    int *arr2 = (int *) malloc(size_t2 * sizeof(int));
+    int pos = 0;
+
+    if(arr1 == NULL || arr2 == NULL) {
+        printf("Falha na alocação de memoria\n");
+        exit(1);
+    }
+
+    treeToArr(root1, arr1, &pos);
+    pos = 0;
+    treeToArr(root2, arr2, &pos);
+
+    int i;
+    Node *root3 = createTree();
+
+    for(i = 0; i < size_t1; i++) {
+        insert(&root3, arr1[i]);
+    }
+
+    for(i = 0; i < size_t2; i++) {
+        insert(&root3, arr2[i]);
+    }
+
+    free(arr1);
+    free(arr2);
+
+    return root3;
+}
+
+
+void processLevel(Node *root, int level) {
+    if(root != NULL) {
+        if(level == 0) {
+            printf("%d ", root->data);
+        } else {
+            if(level > 0) {
+                processLevel(root->left, level - 1);
+                processLevel(root->right, level - 1);
+            }
+        }
+    }
+}
+
+int absoluteHeight(Node *root) {
+    if(root == NULL) return 0;
+    if(root->left == NULL && root->right == NULL) return 1;
+
+    int hl = absoluteHeight(root->left);
+    int hr = absoluteHeight(root->right);
+
+    return  hl > hr ? hl + 1 : hr + 1;
+}
+
+void BFS(Node *root) {
+    int level, height;
+    
+    height = absoluteHeight(root);
+
+    for(level = 0; level < height; level++) {
+        printf("Nível %d: ", level);
+        processLevel(root, level);
+        printf("\n");
+    }
 }
