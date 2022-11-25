@@ -27,7 +27,7 @@ int sizeTree(Node *root) {
 }
 
 void insert(Node **root, int newData) {
-    *root = insertNode(*root, createNode(newData));
+    *root = insertNode((*root), createNode(newData));
 }
 
 Node *insertNode(Node *root, Node *newNode){
@@ -83,11 +83,11 @@ Node *searchTree(Node *root, int data) {
     if(root->data == data) return root;
 
     Node *child;
-    
+
     child = searchTree(root->left, data);
     if(child != NULL) return child;
 
-    
+
     child = searchTree(root->right, data);
     if(child != NULL) return child;
 
@@ -154,6 +154,7 @@ Node *min(Node * node) {
 
 
 Node *rotateL(Node *root){
+
     Node *newRoot = root->right;
     Node *temp = newRoot->left;
 
@@ -167,6 +168,7 @@ Node *rotateL(Node *root){
 }
 
 Node *rotateR(Node *root){
+
     Node *newRoot = root->left;
     Node *temp = newRoot->right;
 
@@ -179,19 +181,17 @@ Node *rotateR(Node *root){
     return newRoot;
 }
 
-Node *removeNode(Node * root, int key) {
+Node *removeNode(Node *root, int key) {
     if(root == NULL) return root;
 
 
-    if(key < root->data) 
+    if(key < root->data)
         root->left = removeNode(root->left, key);
-    
     else if(key > root->data)
         root->right = removeNode(root->right, key);
-    
     else {
         if( (root->left == NULL) || (root->right == NULL)) {
-            Node *temp = root->left != NULL ? root->left : root->right;
+            Node *temp = ((root->left != NULL) ? root->left : root->right);
 
             if(temp == NULL) {
                 temp = root;
@@ -201,7 +201,6 @@ Node *removeNode(Node * root, int key) {
 
             free(temp);
         }
-
         else {
             Node * temp = min(root->right);
 
@@ -219,7 +218,7 @@ Node *removeNode(Node * root, int key) {
 
     if(balance > 1 && getBalance(root->left) >= 0)
         return rotateR(root);
-    
+
     if(balance > 1 && getBalance(root->left) < 0) {
         root->left = rotateL(root->left);
         return rotateR(root);
@@ -327,7 +326,7 @@ int absoluteHeight(Node *root) {
 
 void BFS(Node *root) {
     int level, height;
-    
+
     height = absoluteHeight(root);
 
     for(level = 0; level < height; level++) {
