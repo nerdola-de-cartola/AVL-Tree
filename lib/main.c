@@ -5,8 +5,8 @@ int main(){
     int key;
     int percurso;
 
-    struct Node *temp = NULL;
     struct Node *root = NULL;
+    struct Node *tree = NULL;
 
 
 
@@ -16,6 +16,11 @@ int main(){
         printf("02 - excluir No.\n");
         printf("03 - mostrar arvore.\n");
         printf("04 - fazer percurso.\n");
+        printf("05 - tamanho da arvore.\n");
+        printf("06 - proucurar No especifico.\n");
+        printf("07 - destruir arvore.\n");
+        printf("08 - altura maxima da arvore.\n");
+        printf("09 - mesclar (merge), duas arvores.\n");
 
         printf("00 - para parar o programa.\n");
         printf("\nDigite uma opcao: ");
@@ -27,15 +32,14 @@ int main(){
                 printf("digite a chave a ser inserida: ");
                 scanf("%d", &key);
 
-                temp = createNode(key);
-                root = insertNode(root, temp);
+                insert(&root, key);
 
                 break;
             case 2:
                 printf("digite a chave do no a ser excluida: ");
                 scanf("%d", &key);
 
-                //removeNode(head, key);
+                root = removeNode(root, key);
 
                 break;
             case 3:
@@ -44,7 +48,7 @@ int main(){
 
                 break;
             case 4:
-                printf("digite a forma do percurso.\n");
+                printf("\ndigite a forma do percurso.\n");
 
                 printf("1 - pre ordem.\n");
                 printf("2 - in ordem.\n");
@@ -63,6 +67,49 @@ int main(){
                             postfix(root);
                             break;
                     }
+                break;
+            case 5:
+                printf("\nTamanho: %d", sizeTree(root));
+
+                break;
+            case 6:
+                printf("\ndigite a chave: \n");
+                scanf("%d", &key);
+
+                if(searchTree(root, key) != NULL){
+                    printf("Chave %d presente na arvore", key);
+                }
+                else printf("Chave %d nao esta na arvore", key);
+
+                break;
+            case 7:
+                root = destroyTree(root);
+
+                break;
+            case 8:
+                printf("\nAltura maxima da arvore e: %d.\n", absoluteHeight(root));
+
+                break;
+            case 9:
+                printf("\ndigite a sequencia de chaves para a nova arvore que sera mesclada a outra, digite 0 para parar:\n");
+                scanf("%d", &key);
+
+                while(key != 0){
+                    insert(&tree, key);
+                    scanf("%d", &key);
+                }
+
+                printf("\nArvore que sera mesclada.\n");
+                printTree(tree, 0);
+
+                if(tree != NULL)
+                    tree = merge(root, tree);
+
+                printf("\nArvore ja mesclada.\n");
+                printTree(tree, 0);
+
+                tree = destroyTree(tree);
+
                 break;
         }
     }while(opcao != 0);
