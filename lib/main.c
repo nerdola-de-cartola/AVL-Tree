@@ -1,14 +1,14 @@
-#include "avl.c"
+#include "avl.h"
 
 int main(){
     int opcao;
     int key;
     int percurso;
+    int size_new_tree;
+    int i;
 
-    struct Node *root = NULL;
-    struct Node *tree = NULL;
-
-
+    struct Node *root = createTree();
+    struct Node *new_tree = createTree();
 
     do{
         printf("\n\n------------------------------------- Menu -------------------------------------\n");
@@ -39,7 +39,7 @@ int main(){
                 printf("digite a chave do no a ser excluida: ");
                 scanf("%d", &key);
 
-                root = removeNode(root, key);
+                delete(&root, key);
 
                 break;
             case 3:
@@ -76,14 +76,14 @@ int main(){
                 printf("\ndigite a chave: \n");
                 scanf("%d", &key);
 
-                if(searchTree(root, key) != NULL){
+                if(searchTree(root, key) != NULL)
                     printf("Chave %d presente na arvore", key);
-                }
-                else printf("Chave %d nao esta na arvore", key);
+                else 
+                    printf("Chave %d nao esta na arvore", key);
 
                 break;
             case 7:
-                root = destroyTree(root);
+                destroy(&root);
 
                 break;
             case 8:
@@ -91,24 +91,28 @@ int main(){
 
                 break;
             case 9:
-                printf("\ndigite a sequencia de chaves para a nova arvore que sera mesclada a outra, digite 0 para parar:\n");
-                scanf("%d", &key);
+                printf("\nDigite a quantidade de elementos da árvore que será mesclada: ");
+                scanf("%d", &size_new_tree);
 
-                while(key != 0){
-                    insert(&tree, key);
+                printf("\nDigite os elementos da árvore que será mesclada: ");
+                for(i = 0; i < size_new_tree; i++) {
+                    insert(&new_tree, key);
                     scanf("%d", &key);
                 }
 
-                printf("\nArvore que sera mesclada.\n");
-                printTree(tree, 0);
+                printf("\nArvore original.\n");
+                printTree(root, 0);
 
-                if(tree != NULL)
-                    tree = merge(root, tree);
+                printf("\nArvore que sera mesclada.\n");
+                printTree(new_tree, 0);
+
+                if(new_tree != NULL)
+                    new_tree = merge(root, new_tree);
 
                 printf("\nArvore ja mesclada.\n");
-                printTree(tree, 0);
+                printTree(new_tree, 0);
 
-                tree = destroyTree(tree);
+                destroy(&new_tree);
 
                 break;
         }
