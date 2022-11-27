@@ -82,6 +82,7 @@ Node *searchTree(Node *root, int data) {
 
     if(root->data == data) return root;
 
+<<<<<<< Updated upstream
     Node *child;
     
     child = searchTree(root->left, data);
