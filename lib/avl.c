@@ -92,6 +92,11 @@ Node *searchTree(Node *root, int data) {
     if(child != NULL) return child;
 
     return NULL;
+=======
+    if(data < root->data) return searchTree(root->left, data);
+    
+    return searchTree(root->right, data);
+>>>>>>> Stashed changes
 }
 
 int max(int x, int y){
