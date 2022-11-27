@@ -82,16 +82,10 @@ Node *searchTree(Node *root, int data) {
 
     if(root->data == data) return root;
 
-    Node *child;
+    if(data < root->data)
+        return searchTree(root->left, data);
 
-    child = searchTree(root->left, data);
-    if(child != NULL) return child;
-
-
-    child = searchTree(root->right, data);
-    if(child != NULL) return child;
-
-    return NULL;
+    return searchTree(root->right, data);
 }
 
 int max(int x, int y){
